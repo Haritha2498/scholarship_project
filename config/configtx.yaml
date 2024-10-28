@@ -1,0 +1,182 @@
+Organizations:
+  - &OrdererOrg
+    Name: OrdererOrg
+    ID: OrdererMSP
+    MSPDir: ../organizations/ordererOrganizations/scholarship.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('OrdererMSP.admin')"
+    OrdererEndpoints:
+      - orderer.scholarship.com:7050
+  - &user
+    Name: userMSP
+    ID: userMSP
+    MSPDir: ../organizations/peerOrganizations/user.scholarship.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('userMSP.admin', 'userMSP.peer', 'userMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('userMSP.admin', 'userMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('userMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('userMSP.peer')"
+  - &university
+    Name: universityMSP
+    ID: universityMSP
+    MSPDir: ../organizations/peerOrganizations/university.scholarship.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('universityMSP.admin', 'universityMSP.peer', 'universityMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('universityMSP.admin', 'universityMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('universityMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('universityMSP.peer')"
+
+  - &govAgency
+    Name: govAgencyMSP
+
+    ID: govAgencyMSP
+
+    MSPDir: ../organizations/peerOrganizations/govAgency.scholarship.com/msp
+
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('govAgencyMSP.admin', 'govAgencyMSP.peer', 'govAgencyMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('govAgencyMSP.admin', 'govAgencyMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('govAgencyMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('govAgencyMSP.peer')" 
+
+  - &scholarshipProvider
+    Name: scholarshipProviderMSP
+    ID: scholarshipProviderMSP
+    MSPDir: ../organizations/peerOrganizations/scholarshipProvider.scholarship.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('scholarshipProviderMSP.admin', 'scholarshipProviderMSP.peer', 'scholarshipProviderMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('scholarshipProviderMSP.admin', 'scholarshipProviderMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('scholarshipProviderMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('scholarshipProviderMSP.peer')"
+
+
+
+Capabilities:  
+  Channel: &ChannelCapabilities
+    V2_0: true
+  Orderer: &OrdererCapabilities
+    V2_0: true
+  Application: &ApplicationCapabilities
+    V2_5: true
+    
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  Addresses:
+    - orderer.scholarship.com:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  ChannelUsingRaft:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      OrdererType: etcdraft
+      EtcdRaft:
+        Consenters:
+          - Host: orderer.scholarship.com
+            Port: 7050
+            ClientTLSCert: ../organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/tls/server.crt
+            ServerTLSCert: ../organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/tls/server.crt
+      Organizations:
+        - *OrdererOrg
+      Capabilities: *OrdererCapabilities
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *user
+        - *university
+        - *govAgency
+        - *scholarshipProvider
+      Capabilities: *ApplicationCapabilities

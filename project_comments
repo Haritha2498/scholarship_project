@@ -1,0 +1,263 @@
+setting Environment variables
+
+		setting up environment for user peer 
+
+
+export FABRIC_CFG_PATH=./peercfg
+export CHANNEL_NAME=mychannel 
+export CORE_PEER_TLS_ENABLED=true
+export ORDERER_CA=${PWD}/organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/msp/tlscacerts/tlsca.scholarship.com-cert.pem
+
+export CORE_PEER_LOCALMSPID=userMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/user.scholarship.com/peers/peer0.user.scholarship.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/user.scholarship.com/users/Admin@user.scholarship.com/msp
+export CORE_PEER_ADDRESS=localhost:7051
+
+export USER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/user.scholarship.com/peers/peer0.user.scholarship.com/tls/ca.crt
+
+export UNIVERSITY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/university.scholarship.com/peers/peer0.university.scholarship.com/tls/ca.crt
+
+export GOVAGENCY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/peers/peer0.govAgency.scholarship.com/tls/ca.crt
+
+export SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/peers/peer0.scholarshipProvider.scholarship.com/tls/ca.crt
+
+
+
+		setting up environment for university peer 
+
+
+export FABRIC_CFG_PATH=./peercfg
+export CHANNEL_NAME=mychannel 
+export CORE_PEER_TLS_ENABLED=true
+export ORDERER_CA=${PWD}/organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/msp/tlscacerts/tlsca.scholarship.com-cert.pem
+
+export CORE_PEER_LOCALMSPID=universityMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/university.scholarship.com/peers/peer0.university.scholarship.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/university.scholarship.com/users/Admin@university.scholarship.com/msp
+export CORE_PEER_ADDRESS=localhost:9051
+
+export USER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/user.scholarship.com/peers/peer0.user.scholarship.com/tls/ca.crt
+
+export UNIVERSITY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/university.scholarship.com/peers/peer0.university.scholarship.com/tls/ca.crt
+
+export GOVAGENCY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/peers/peer0.govAgency.scholarship.com/tls/ca.crt
+
+export SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/peers/peer0.scholarshipProvider.scholarship.com/tls/ca.crt
+
+
+
+		setting up govAgency peer
+	
+		
+export FABRIC_CFG_PATH=./peercfg
+export CHANNEL_NAME=mychannel 
+export CORE_PEER_TLS_ENABLED=true
+export ORDERER_CA=${PWD}/organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/msp/tlscacerts/tlsca.scholarship.com-cert.pem
+		
+export CORE_PEER_LOCALMSPID=govAgencyMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/peers/peer0.govAgency.scholarship.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/users/Admin@govAgency.scholarship.com/msp
+export CORE_PEER_ADDRESS=localhost:11051
+
+export USER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/user.scholarship.com/peers/peer0.user.scholarship.com/tls/ca.crt
+
+export UNIVERSITY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/university.scholarship.com/peers/peer0.university.scholarship.com/tls/ca.crt
+
+export GOVAGENCY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/peers/peer0.govAgency.scholarship.com/tls/ca.crt
+
+export SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/peers/peer0.scholarshipProvider.scholarship.com/tls/ca.crt
+
+
+
+		setting up environment for scholarshipProvider peer 
+		
+		
+export FABRIC_CFG_PATH=./peercfg
+export CHANNEL_NAME=mychannel 
+export CORE_PEER_TLS_ENABLED=true
+export ORDERER_CA=${PWD}/organizations/ordererOrganizations/scholarship.com/orderers/orderer.scholarship.com/msp/tlscacerts/tlsca.scholarship.com-cert.pem
+	
+export CORE_PEER_LOCALMSPID=scholarshipProviderMSP
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/peers/peer0.scholarshipProvider.scholarship.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/users/Admin@scholarshipProvider.scholarship.com/msp
+export CORE_PEER_ADDRESS=localhost:11151
+	
+export USER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/user.scholarship.com/peers/peer0.user.scholarship.com/tls/ca.crt
+
+export UNIVERSITY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/university.scholarship.com/peers/peer0.university.scholarship.com/tls/ca.crt
+
+export GOVAGENCY_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/govAgency.scholarship.com/peers/peer0.govAgency.scholarship.com/tls/ca.crt
+
+export SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT=${PWD}/organizations/peerOrganizations/scholarshipProvider.scholarship.com/peers/peer0.scholarshipProvider.scholarship.com/tls/ca.crt
+
+		
+
+
+
+
+
+
+
+
+
+setting the student details in university peer
+
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"setstudent","Args":[ ]}'
+
+
+
+
+
+		creating application by user
+
+
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"createStudentApplication","Args":["001", "Abi","scholarship1" ]}'
+
+	reading student application
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"readStudentApplication","Args":["001"]}'
+
+
+
+
+
+	in   university peer
+
+ 	forwarding the application the scholership provider by verifing the application and adding extra details
+ 	
+ 	
+ 	
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"createUniversityApplication","Args":["1234", "001", "1478","scholarship1"  ]}'
+
+
+ 
+
+	to read application
+	
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"readApplication","Args":["1234"]}'
+
+
+
+
+
+
+
+		in scholarship provider
+
+
+setting scholerrship details
+
+
+
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"setScholarship","Args":[ ]}'
+
+
+
+
+to check whether a scholership exist
+
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"scholarshipExists","Args":["scholarship1"]}'
+
+
+
+
+to check whether any appplication is assigned to a scholership id
+
+
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"isApplicationAssigned","Args":["scholarship1"]}'
+
+
+
+
+is approved
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"isApplicationApproved","Args":["1234"]}'
+
+isStudentApprovedForScholarship
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"isStudentApprovedForScholarship","Args":["scholarship1","1234"]}'
+
+
+
+approve fund
+
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"approveFund","Args":["scholarship1","1234"]}'
+
+
+
+
+
+
+
+
+
+
+in gov Agency peer
+
+
+function to grand fund amount to tthe application
+
+
+
+
+
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"allocateFund","Args":["scholarship1","1234" ]}'
+
+
+
+
+
+
+
+
+
+in university peer
+
+
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"updateStudentApplicationStatus","Args":["1234","001" ]}'
+
+
+
+
+
+
+
+
+
+function to get history
+
+
+peer chaincode query -C $CHANNEL_NAME -n scholarship -c '{"function":"getApplicationHistory","Args":["1234"]}'
+
+
+
+
+
+
+
+
+
+
+
+
+deleting student application
+		
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"deleteStudentApplication","Args":["001"]}'
+
+
+deleting unviversity application
+
+
+delte application
+		
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.scholarship.com --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n scholarship --peerAddresses localhost:7051 --tlsRootCertFiles $USER_PEER_TLSROOTCERT --peerAddresses localhost:9051 --tlsRootCertFiles $UNIVERSITY_PEER_TLSROOTCERT --peerAddresses localhost:11051 --tlsRootCertFiles $GOVAGENCY_PEER_TLSROOTCERT --peerAddresses localhost:11151 --tlsRootCertFiles $SCHOLARSHIPPROVIDER_PEER_TLSROOTCERT -c '{"function":"deleteUniversityApplication","Args":["1234"]}'
